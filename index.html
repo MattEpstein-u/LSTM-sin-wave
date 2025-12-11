@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSTM Sine Wave Predictor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+</head>
+<body>
+    <h1>LSTM Sine Wave Predictor</h1>
+    
+    <div class="config">
+        <h2>Data Generation Configuration</h2>
+        <div>
+            <label for="numPoints">Number of Data Points (100-1000):</label>
+            <input type="number" id="numPoints" min="100" max="1000" value="100">
+        </div>
+        
+        <div>
+            <label for="minAmp">Min Amplitude:</label>
+            <input type="number" id="minAmp" step="0.1" value="0.5">
+        </div>
+        
+        <div>
+            <label for="maxAmp">Max Amplitude:</label>
+            <input type="number" id="maxAmp" step="0.1" value="2.0">
+        </div>
+        
+        <div>
+            <label for="minWave">Min Wavelength:</label>
+            <input type="number" id="minWave" step="0.1" value="0.3">
+        </div>
+        
+        <div>
+            <label for="maxWave">Max Wavelength:</label>
+            <input type="number" id="maxWave" step="0.1" value="2.0">
+        </div>
+
+        <div>
+            <label for="negProb">Negative Probability (%):</label>
+            <input type="number" id="negProb" min="0" max="100" value="50">
+        </div>
+        
+        <div>
+            <button id="generateBtn">Generate Data</button>
+        </div>
+    </div>
+    
+    <div class="view">
+        <h2>Data Visualization</h2>
+        <div>
+            <label for="startIndex">Starting Index:</label>
+            <input type="number" id="startIndex" min="0" value="0">
+        </div>
+        
+        <div>
+            <label for="numToShow">Number to Show:</label>
+            <input type="number" id="numToShow" min="1" value="8">
+        </div>
+        
+        <div>
+            <button id="displayBtn">Display Waves</button>
+        </div>
+        
+        <canvas id="waveCanvas" width="1000" height="500"></canvas>
+        <div id="legend" class="legend"></div>
+    </div>
+
+    <div class="train">
+        <h2>Model Training</h2>
+        <button id="trainBtn">Train LSTM Model</button>
+        <div id="trainingStatus"></div>
+        <canvas id="lossCanvas" width="600" height="300"></canvas>
+    </div>
+
+    <div class="evaluation">
+        <h2>Model Evaluation</h2>
+        <p>Visualizing predictions on new test data. <span style="color:red">Red = Actual</span>, <span style="color:green">Green = Predicted</span>.</p>
+        <canvas id="evalCanvas" width="1000" height="500"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
